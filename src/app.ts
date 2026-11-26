@@ -1,4 +1,5 @@
 import rutasTurnos from "./components/turnos/routes";
+import rutasUsuarios from "./components/usuarios/routes";
 import "dotenv/config";
 import express from "express";
 import { conectarDB } from "./db";
@@ -8,6 +9,7 @@ const puerto = Number(process.env.PORT || "3000");
 
 app.use(express.json());
 app.use("/api/turnos", rutasTurnos);
+app.use("/api/usuarios", rutasUsuarios);
 
 app.get("/api/salud", (_req, res) => {
   res.status(200).json({ mensaje: "API de turnos médicos funcionando" });
