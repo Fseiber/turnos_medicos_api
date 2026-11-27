@@ -3,10 +3,12 @@ import rutasUsuarios from "./components/usuarios/routes";
 import "dotenv/config";
 import express from "express";
 import { conectarDB } from "./db";
+import { logging } from "./middlewares/logging";
 
 const app = express();
 const puerto = Number(process.env.PORT || "3000");
 
+app.use(logging);
 app.use(express.json());
 app.use("/api/turnos", rutasTurnos);
 app.use("/api/usuarios", rutasUsuarios);
