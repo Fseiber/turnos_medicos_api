@@ -177,14 +177,6 @@ Los módulos `src/components/turnos` y `src/components/usuarios` siguen el flujo
 
 `src/app.ts` monta los routers y el endpoint de salud. `src/db.ts` abre la conexión a Atlas. `src/middlewares/autenticacion.ts` protege el router de turnos.
 
-## Verificaciones y evidencia de la entrega
+## Pruebas en Thunder Client
 
-- Revisión de código: se comprobaron las rutas, sus capas, las validaciones, el hash de contraseñas, la firma y verificación JWT y las respuestas 500 de los controladores.
-- Durante el desarrollo se ejecutó `npx tsc` sin errores. También se verificó Bcrypt y se comprobó aisladamente el middleware con token ausente, inválido, vencido, firma incorrecta, esquema incorrecto y token válido. Esto no reemplaza las pruebas HTTP.
-- El autor confirmó en Thunder Client las pruebas del CRUD de turnos, del registro (válido, email repetido y contraseña inválida) y del login (válido, contraseña incorrecta y usuario inexistente). Las pruebas del CRUD fueron anteriores a la incorporación del middleware JWT.
-- Queda pendiente tomar las capturas nuevas de cada endpoint y de los errores 400, 401 y 404, repitiendo las operaciones de turnos con JWT. No se han ejecutado esas pruebas nuevas durante la preparación de este README.
-- El manejo de 500 se revisó en código; no se provocaron errores inesperados para probarlo en ejecución. Las capturas de error solicitadas son 400, 401 y 404.
-- No hay una suite automatizada de integración. `npm test` no sirve como evidencia de pruebas.
-- No se encontró el PDF de la consigna en el proyecto. La documentación se preparó con los requisitos citados por el autor: instalación, ejecución, endpoints y evidencia mediante colección exportada o capturas. Queda pendiente contrastar los diez requisitos completos y la rúbrica con el PDF original.
-
-Para esta entrega se eligieron capturas nuevas en Thunder Client. Cada captura debe mostrar método, URL, body cuando corresponda, código HTTP y respuesta. Ocultar tokens reales y credenciales antes de compartir las imágenes. La colección exportada es la alternativa indicada por la consigna, no una evidencia ya generada en este repositorio.
+[Ver las capturas de los ocho endpoints y de los errores 400, 401 y 404](./evidencias/)
