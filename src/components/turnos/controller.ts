@@ -35,11 +35,15 @@ export async function actualizar(req: Request<{ id: string }>, res: Response) {
   }
 }
 
-export async function listar(_req: Request, res: Response) {
+export async function listar(req: Request, res: Response) {
   try {
-    const turnos = await listarTurnos();
+    const turnos = await listarTurnos(req.query);
     res.status(200).json(turnos);
   } catch (error) {
+    if (error instanceof ErrorValidacionTurno) {
+      res.status(400).json({ mensaje: error.message });
+      return;
+    }
     res.status(500).json({ mensaje: "No se pudieron listar los turnos" });
   }
 }

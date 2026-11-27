@@ -14,8 +14,8 @@ export function buscarTurnoPorId(id: string) {
   return Turno.findById(id);
 }
 
-export function buscarTodosLosTurnos() {
-  return Turno.find();
+export function buscarTodosLosTurnos(filtros: { estado?: string; especialidad?: string } = {}) {
+  return Turno.find(filtros);
 }
 
 export function eliminarTurno(id: string) {

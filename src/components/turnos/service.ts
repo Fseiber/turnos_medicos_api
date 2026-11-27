@@ -9,8 +9,25 @@ function validarEspecialidad(especialidad: unknown): asserts especialidad is str
   }
 }
 
-export function listarTurnos() {
-  return buscarTodosLosTurnos();
+export function listarTurnos(consulta: { estado?: unknown; especialidad?: unknown } = {}) {
+  const { estado, especialidad } = consulta;
+  const filtros: { estado?: string; especialidad?: string } = {};
+
+  if (Array.isArray(estado) || Array.isArray(especialidad)) {
+    throw new ErrorValidacionTurno("Los filtros estado y especialidad no pueden repetirse");
+  }
+  if (estado !== undefined) {
+    if (typeof estado !== "string" || !ESTADOS_TURNO.includes(estado)) {
+      throw new ErrorValidacionTurno("El estado no está permitido");
+    }
+    filtros.estado = estado;
+  }
+  if (especialidad !== undefined) {
+    validarEspecialidad(especialidad);
+    filtros.especialidad = especialidad;
+  }
+
+  return buscarTodosLosTurnos(filtros);
 }
 
 export function crearTurno(datos: unknown) {
