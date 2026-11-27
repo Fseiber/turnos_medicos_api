@@ -30,7 +30,7 @@ export function listarTurnos(consulta: { estado?: unknown; especialidad?: unknow
   return buscarTodosLosTurnos(filtros);
 }
 
-export function crearTurno(datos: unknown) {
+export function crearTurno(datos: unknown, creadoPor: string) {
   if (typeof datos !== "object" || datos === null || Array.isArray(datos)) {
     throw new ErrorValidacionTurno("Enviá los datos del turno en un objeto JSON");
   }
@@ -57,6 +57,7 @@ export function crearTurno(datos: unknown) {
     paciente: paciente.trim(),
     especialidad,
     fecha: fechaTurno,
+    creadoPor,
   });
 }
 function validarIdTurno(id: string) {

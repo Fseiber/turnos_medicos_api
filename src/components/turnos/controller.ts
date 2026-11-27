@@ -48,9 +48,9 @@ export async function listar(req: Request, res: Response) {
   }
 }
 
-export async function crear(req: Request, res: Response) {
+export async function crear(req: Request, res: Response<unknown, { usuarioId: string }>) {
   try {
-    const turno = await crearTurno(req.body);
+    const turno = await crearTurno(req.body, res.locals.usuarioId);
     res.status(201).json(turno);
   } catch (error) {
     if (error instanceof ErrorValidacionTurno) {

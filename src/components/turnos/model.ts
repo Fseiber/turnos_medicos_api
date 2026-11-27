@@ -8,6 +8,7 @@ const esquemaTurno = new Schema({
   especialidad: { type: String, required: true, enum: ESPECIALIDADES },
   fecha: { type: Date, required: true },
   estado: { type: String, enum: ESTADOS_TURNO, default: "PENDIENTE" },
+  creadoPor: { type: Schema.Types.ObjectId, ref: "User", immutable: true },
 });
 
 export const Turno = model("Turno", esquemaTurno);

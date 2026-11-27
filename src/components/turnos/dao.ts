@@ -6,7 +6,7 @@ type DatosNuevoTurno = {
   fecha: Date;
 };
 
-export function crearTurno(datos: DatosNuevoTurno) {
+export function crearTurno(datos: DatosNuevoTurno & { creadoPor: string }) {
   return Turno.create(datos);
 }
 
